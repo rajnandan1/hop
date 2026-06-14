@@ -30,9 +30,7 @@ A workflow processes the issue within a minute, comments the result, and closes 
 
 <!-- HOP:START -->
 
-| Short link | Target | Added | Source |
-| --- | --- | --- | --- |
-| [/test](https://rajnandan1.github.io/hop/test) | [rajnandan.com](https://rajnandan.com/) | 2026-06-14 | #1 |
+_No links yet. Open an issue using one of the link templates to create one._
 
 <!-- HOP:END -->
 
