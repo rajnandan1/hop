@@ -1,0 +1,29 @@
+name: New link
+description: Create a new short link
+title: "[link] new"
+labels: ["link-new"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Create a short link. Submitting this opens an issue that a workflow will
+        pick up automatically — you'll get a comment with the live URL, or the
+        reason it was rejected.
+  - type: input
+    id: target
+    attributes:
+      label: Target URL
+      description: The destination this link should redirect to. Must start with http:// or https://.
+      placeholder: https://example.com/some/long/path
+    validations:
+      required: true
+  - type: input
+    id: slug
+    attributes:
+      label: Custom slug (optional)
+      description: >-
+        The short path, e.g. "raj" makes /raj. Lowercase letters, numbers and
+        hyphens only. Leave blank to auto-generate a short random one.
+      placeholder: raj
+    validations:
+      required: false

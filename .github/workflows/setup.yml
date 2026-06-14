@@ -1,0 +1,27 @@
+name: Setup labels
+
+# Creates the labels the issue templates rely on. Runs once when the template is
+# first imported (the initial commit adds this file) and on demand.
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/setup.yml
+  workflow_dispatch:
+
+permissions:
+  issues: write
+
+jobs:
+  labels:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+      REPO: ${{ github.repository }}
+    steps:
+      - name: Create or update labels
+        run: |
+          gh label create link-new    --color 0E8A16 --description "Create a short link"       --force --repo "$REPO"
+          gh label create link-edit   --color 1D76DB --description "Edit a short link's target" --force --repo "$REPO"
+          gh label create link-delete --color B60205 --description "Delete a short link"        --force --repo "$REPO"
+          gh label create invalid     --color E4E669 --description "Rejected link request"      --force --repo "$REPO"

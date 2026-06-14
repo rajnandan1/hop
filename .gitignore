@@ -1,0 +1,6 @@
+# Generated site output — rebuilt from urls.json at deploy time (ADR-0001).
+/site/
+
+# Node
+/node_modules/
+npm-debug.log*

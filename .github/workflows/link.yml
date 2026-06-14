@@ -1,0 +1,93 @@
+name: Process link issue
+
+on:
+  issues:
+    types: [opened]
+
+# Serialize writers so two issues opened close together can't clobber urls.json.
+# Queue rather than cancel — every request must be processed.
+concurrency:
+  group: hop-write
+  cancel-in-progress: false
+
+permissions:
+  contents: write   # commit urls.json + README
+  issues: write     # comment, label, close
+  actions: write    # dispatch the deploy workflow
+
+jobs:
+  link:
+    # Only act on issues created from one of the link templates.
+    if: >-
+      contains(github.event.issue.labels.*.name, 'link-new') ||
+      contains(github.event.issue.labels.*.name, 'link-edit') ||
+      contains(github.event.issue.labels.*.name, 'link-delete')
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+      ISSUE: ${{ github.event.issue.number }}
+      AUTHOR_ASSOCIATION: ${{ github.event.issue.author_association }}
+      DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      # Only owners/collaborators may create links, even on a public repo (ADR-0002).
+      - name: Authorize
+        id: auth
+        run: |
+          case "$AUTHOR_ASSOCIATION" in
+            OWNER|MEMBER|COLLABORATOR) echo "ok=true"  >> "$GITHUB_OUTPUT" ;;
+            *)                         echo "ok=false" >> "$GITHUB_OUTPUT" ;;
+          esac
+
+      - name: Reject unauthorized
+        if: steps.auth.outputs.ok != 'true'
+        run: |
+          gh issue comment "$ISSUE" --body "Sorry — only repository owners and collaborators can manage links here. Closing this request."
+          gh issue edit "$ISSUE" --add-label invalid
+          gh issue close "$ISSUE" --reason "not planned"
+
+      # Validate + mutate urls.json/README. Writes the reply to $RUNNER_TEMP/comment.md
+      # and sets outputs: result, op, slug.
+      - name: Process issue
+        id: process
+        if: steps.auth.outputs.ok == 'true'
+        run: node scripts/process-issue.js
+
+      - name: Handle failure
+        if: steps.auth.outputs.ok == 'true' && steps.process.outputs.result == 'failure'
+        run: |
+          gh issue comment "$ISSUE" --body-file "$RUNNER_TEMP/comment.md"
+          gh issue edit "$ISSUE" --add-label invalid
+          gh issue close "$ISSUE" --reason "not planned"
+
+      - name: Commit
+        if: steps.auth.outputs.ok == 'true' && steps.process.outputs.result == 'success'
+        env:
+          OP: ${{ steps.process.outputs.op }}
+          SLUG: ${{ steps.process.outputs.slug }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add urls.json README.md
+          git commit -m "link: $OP /$SLUG (#$ISSUE)"
+          git pull --rebase origin "$DEFAULT_BRANCH"
+          git push
+
+      # A GITHUB_TOKEN commit doesn't re-trigger the push-based deploy, so kick it
+      # explicitly (ADR-0001 / deploy.yml).
+      - name: Trigger deploy
+        if: steps.auth.outputs.ok == 'true' && steps.process.outputs.result == 'success'
+        run: gh workflow run deploy.yml --ref "$DEFAULT_BRANCH"
+
+      - name: Comment success and close
+        if: steps.auth.outputs.ok == 'true' && steps.process.outputs.result == 'success'
+        run: |
+          gh issue comment "$ISSUE" --body-file "$RUNNER_TEMP/comment.md"
+          gh issue close "$ISSUE" --reason completed

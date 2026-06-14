@@ -1,0 +1,17 @@
+name: Delete link
+description: Remove an existing short link
+title: "[link] delete"
+labels: ["link-delete"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Remove a short link. After the deploy finishes it will stop resolving.
+  - type: input
+    id: slug
+    attributes:
+      label: Slug
+      description: The short path to delete, e.g. "raj".
+      placeholder: raj
+    validations:
+      required: true

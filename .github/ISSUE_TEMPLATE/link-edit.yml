@@ -1,0 +1,25 @@
+name: Edit link
+description: Change where an existing short link points
+title: "[link] edit"
+labels: ["link-edit"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Update the destination of an existing short link. The slug stays the same.
+  - type: input
+    id: slug
+    attributes:
+      label: Slug
+      description: The existing short path to update, e.g. "raj".
+      placeholder: raj
+    validations:
+      required: true
+  - type: input
+    id: target
+    attributes:
+      label: New target URL
+      description: The new destination. Must start with http:// or https://.
+      placeholder: https://example.com/new/path
+    validations:
+      required: true

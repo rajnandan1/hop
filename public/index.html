@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>hop · a static URL shortener</title>
+<style>
+  :root { color-scheme: light dark; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 2rem;
+    font: 16px/1.6 ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    background: #fafafa;
+    color: #18181b;
+  }
+  @media (prefers-color-scheme: dark) {
+    body { background: #0b0b0c; color: #e4e4e7; }
+    .card { background: #131316; border-color: #27272a; }
+    code { background: #27272a; }
+  }
+  .card {
+    max-width: 32rem;
+    width: 100%;
+    background: #fff;
+    border: 1px solid #e4e4e7;
+    border-radius: 16px;
+    padding: 2.5rem;
+  }
+  h1 { margin: 0 0 .25rem; font-size: 1.75rem; letter-spacing: -0.02em; }
+  .lede { margin: 0 0 1.5rem; opacity: .7; }
+  p { margin: 0 0 1rem; }
+  code { background: #f4f4f5; padding: .15em .4em; border-radius: 6px; font-size: .9em; }
+  a.btn {
+    display: inline-block;
+    margin-top: .5rem;
+    padding: .6rem 1.1rem;
+    border-radius: 10px;
+    background: #18181b;
+    color: #fafafa;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  @media (prefers-color-scheme: dark) { a.btn { background: #e4e4e7; color: #18181b; } }
+  footer { margin-top: 1.5rem; font-size: .85rem; opacity: .55; }
+  footer a { color: inherit; }
+</style>
+</head>
+<body>
+<main class="card">
+  <h1>hop ⚡</h1>
+  <p class="lede">A URL shortener with no server and no database.</p>
+  <p>Every short link here is created by opening a GitHub issue. A workflow validates it, writes it to <code>urls.json</code>, and publishes a redirect — all on GitHub Actions + Pages.</p>
+  <p>Go to <code>/your-slug</code> to follow a link.</p>
+  <a class="btn" href="{{REPO_URL}}">View on GitHub →</a>
+  <footer>Powered by <a href="https://github.com/{{REPO_SLUG}}">hop</a>.</footer>
+</main>
+</body>
+</html>

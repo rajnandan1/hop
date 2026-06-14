@@ -1,0 +1,15 @@
+{
+  "name": "hop",
+  "version": "1.0.0",
+  "private": true,
+  "description": "An issue-driven static URL shortener powered by GitHub Issues, Actions, and Pages.",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "test": "node --test",
+    "build": "node scripts/build-site.js"
+  },
+  "license": "MIT"
+}
