@@ -8,15 +8,14 @@ An issue-driven static **URL shortener** that runs entirely on GitHub — no ser
 
 After generating your own repo from this template:
 
-1. **Remove the inherited domain.** This template ships a `CNAME` file pointing at the original author's domain (`l.rajnandan.com`). **Delete the `CNAME` file** now — otherwise your deploy tries to claim a domain you don't own. (Want your own custom domain instead? See step 6.)
-2. **Enable Actions.** Open the **Actions** tab and click to enable workflows if prompted.
-3. **Create the labels.** Actions → **Setup labels** → **Run workflow**. (Also runs automatically on first import.)
-4. **Turn on Pages.** Settings → **Pages** → set **Source = GitHub Actions**.
-5. **Deploy.** Actions → **Deploy site** → **Run workflow**. Your shortener goes live at `https://<you>.github.io/<repo>/`.
+1. **Enable Actions.** Open the **Actions** tab and click to enable workflows if prompted.
+2. **Create the labels.** Actions → **Setup labels** → **Run workflow**. (Also runs automatically on first import.)
+3. **Turn on Pages.** Settings → **Pages** → set **Source = GitHub Actions**.
+4. **Deploy.** Actions → **Deploy site** → **Run workflow**. Your shortener goes live at `https://<you>.github.io/<repo>/`.
 
 That's all you need. Open a **New link** issue (see [Usage](#usage)) and your first short link is live within a minute.
 
-6. **(Optional) custom domain.** Put your domain in a `CNAME` file (e.g. `links.example.com`), point its DNS at GitHub Pages, and set it under Settings → Pages. The base URL is auto-detected — nothing else to change. *DNS: a **subdomain** uses a `CNAME` record to `<you>.github.io`; an **apex** domain uses `A` records to GitHub's Pages IPs.*
+5. **(Optional) custom domain.** Add a `CNAME` file containing your domain (e.g. `links.example.com`), point its DNS at GitHub Pages, and set it under Settings → Pages. The base URL is auto-detected — nothing else to change. *DNS: a **subdomain** uses a `CNAME` record to `<you>.github.io`; an **apex** domain uses `A` records to GitHub's Pages IPs.*
 
 ## Usage
 
@@ -36,9 +35,7 @@ A workflow processes the issue within a minute, comments the result, and closes 
 
 <!-- HOP:START -->
 
-| Short link | Target | Added | Source |
-| --- | --- | --- | --- |
-| [/termo](https://l.rajnandan.com/termo) | [termo.rajnandan.com](https://termo.rajnandan.com/) | 2026-06-14 | #3 |
+_No links yet. Open an issue using one of the link templates to create one._
 
 <!-- HOP:END -->
 
