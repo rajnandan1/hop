@@ -1,4 +1,8 @@
-# hop ⚡
+<p align="center">
+  <img src="public/hop-mark.svg" alt="hop" width="80">
+</p>
+
+<h1 align="center">hop</h1>
 
 An issue-driven static **URL shortener** that runs entirely on GitHub — no server, no database. You create short links by opening a GitHub **issue**; a workflow validates it, writes it to `urls.json`, and **GitHub Pages** serves the redirect.
 
