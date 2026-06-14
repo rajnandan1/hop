@@ -25,4 +25,5 @@ pnpm-debug.log*
 
 # Project docs to ignore locally
 /CONTEXT.md
+/PRODUCT.md
 /docs/adr/

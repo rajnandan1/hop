@@ -2,7 +2,11 @@
 
 An issue-driven static **URL shortener** that runs entirely on GitHub — no server, no database. You create short links by opening a GitHub **issue**; a workflow validates it, writes it to `urls.json`, and **GitHub Pages** serves the redirect.
 
-> **Want your own?** Click **[Use this template](https://github.com/rajnandan1/hop/generate)** → create a new **public** repo → follow **Get started** below. ~2 minutes, no server and no secrets to configure.
+<p align="center">
+  <a href="https://github.com/rajnandan1/hop/generate"><img src="cta.png" alt="Use this template" width="300"></a>
+</p>
+
+> **Want your own?** The button above creates a new **public** repo from this template — then follow **[Get started](#get-started)** below. ~2 minutes, no server and no secrets to configure.
 
 ## Get started
 

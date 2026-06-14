@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" role="img" aria-label="hop">
+  <title>hop</title>
+  <circle cx="4" cy="18.2" r="2.4" fill="#f57323"/>
+  <path d="M5 17.3 C 8.6 6.4, 15 6.4, 19 13" stroke="#f57323" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M19 13 L 15.7 13.2 M19 13 L 18.2 9.8" stroke="#f57323" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
