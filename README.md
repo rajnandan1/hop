@@ -15,17 +15,17 @@ After generating your own repo from this template:
 
 That's all you need. Open a **New link** issue (see [Usage](#usage)) and your first short link is live within a minute.
 
-5. **(Optional) custom domain.** Add a `CNAME` file containing your domain (e.g. `links.example.com`), point its DNS at GitHub Pages, and set it under Settings → Pages. The base URL is auto-detected — nothing else to change. *DNS: a **subdomain** uses a `CNAME` record to `<you>.github.io`; an **apex** domain uses `A` records to GitHub's Pages IPs.*
+5. **(Optional) custom domain.** Add a `CNAME` file containing your domain (e.g. `links.example.com`), point its DNS at GitHub Pages, and set it under Settings → Pages. The base URL is auto-detected — nothing else to change. _DNS: a **subdomain** uses a `CNAME` record to `<you>.github.io`; an **apex** domain uses `A` records to GitHub's Pages IPs._
 
 ## Usage
 
 Open an issue from one of the templates (Issues → **New issue**):
 
-| Template | What it does |
-| --- | --- |
-| **New link** | Create a link. Target URL required; slug optional (auto-generated if blank). |
-| **Edit link** | Point an existing slug at a new Target URL. |
-| **Delete link** | Remove a slug. |
+| Template        | What it does                                                                 |
+| --------------- | ---------------------------------------------------------------------------- |
+| **New link**    | Create a link. Target URL required; slug optional (auto-generated if blank). |
+| **Edit link**   | Point an existing slug at a new Target URL.                                  |
+| **Delete link** | Remove a slug.                                                               |
 
 A workflow processes the issue within a minute, comments the result, and closes it. On success the link is live shortly after, once the deploy finishes.
 
@@ -43,10 +43,7 @@ _No links yet. Open an issue using one of the link templates to create one._
 
 - **`urls.json`** is the single source of truth: `{ "<slug>": { url, issue, createdBy, createdAt, updatedAt } }`.
 - **`.github/workflows/link.yml`** reacts to issues, validates input, mutates `urls.json` + this README, commits, and triggers a deploy.
-- **`.github/workflows/deploy.yml`** rebuilds the whole site from `urls.json` (a `/<slug>/index.html` per link that instantly redirects, forwarding `?query` and `#hash`) and publishes it to Pages. Redirect pages are **never committed** — they're generated at deploy time ([why](docs/adr/0001-redirect-pages-built-at-deploy.md)).
-- All logic lives in `scripts/lib/` and is covered by `npm test` (`node --test`).
-
-See [`CONTEXT.md`](CONTEXT.md) for the glossary and [`docs/adr/`](docs/adr/) for the design decisions.
+- **`.github/workflows/deploy.yml`** rebuilds the whole site from `urls.json` (a `/<slug>/index.html` per link that instantly redirects, forwarding `?query` and `#hash`) and publishes it to Pages. Redirect pages are **never committed** — they're generated at deploy time
 
 ## Local development
 

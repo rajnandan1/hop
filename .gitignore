@@ -1,6 +1,28 @@
 # Generated site output — rebuilt from urls.json at deploy time (ADR-0001).
 /site/
 
-# Node
+# Node dependencies
 /node_modules/
+
+# Package manager logs
 npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Local environment files
+.env
+.env.*
+!.env.example
+
+# Editor / OS noise
+.DS_Store
+.vscode/
+.idea/
+
+# Local AI tooling metadata
+.claude/
+
+# Project docs to ignore locally
+/CONTEXT.md
+/docs/adr/
