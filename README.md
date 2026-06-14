@@ -2,15 +2,21 @@
 
 An issue-driven static **URL shortener** that runs entirely on GitHub — no server, no database. You create short links by opening a GitHub **issue**; a workflow validates it, writes it to `urls.json`, and **GitHub Pages** serves the redirect.
 
-> Use this repo as a **template** to run your own shortener.
+> **Want your own?** Click **[Use this template](https://github.com/rajnandan1/hop/generate)** → create a new **public** repo → follow **Get started** below. ~2 minutes, no server and no secrets to configure.
 
-## Setup (once, after generating from the template)
+## Get started
 
-1. **Enable Actions** — open the **Actions** tab and enable workflows if prompted.
-2. **Create the labels** — Actions → **Setup labels** → **Run workflow**. (It also runs automatically on first import.)
-3. **Turn on Pages** — Settings → **Pages** → set **Source = GitHub Actions**.
-4. **First deploy** — Actions → **Deploy site** → **Run workflow**. Your landing page goes live at `https://<owner>.github.io/<repo>/`.
-5. **(Optional) custom domain** — add a `CNAME` file containing your domain (e.g. `rajn.me`) and set it in Settings → Pages. The base URL is detected automatically — no other config needed.
+After generating your own repo from this template:
+
+1. **Remove the inherited domain.** This template ships a `CNAME` file pointing at the original author's domain (`l.rajnandan.com`). **Delete the `CNAME` file** now — otherwise your deploy tries to claim a domain you don't own. (Want your own custom domain instead? See step 6.)
+2. **Enable Actions.** Open the **Actions** tab and click to enable workflows if prompted.
+3. **Create the labels.** Actions → **Setup labels** → **Run workflow**. (Also runs automatically on first import.)
+4. **Turn on Pages.** Settings → **Pages** → set **Source = GitHub Actions**.
+5. **Deploy.** Actions → **Deploy site** → **Run workflow**. Your shortener goes live at `https://<you>.github.io/<repo>/`.
+
+That's all you need. Open a **New link** issue (see [Usage](#usage)) and your first short link is live within a minute.
+
+6. **(Optional) custom domain.** Put your domain in a `CNAME` file (e.g. `links.example.com`), point its DNS at GitHub Pages, and set it under Settings → Pages. The base URL is auto-detected — nothing else to change. *DNS: a **subdomain** uses a `CNAME` record to `<you>.github.io`; an **apex** domain uses `A` records to GitHub's Pages IPs.*
 
 ## Usage
 
