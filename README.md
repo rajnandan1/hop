@@ -30,7 +30,9 @@ A workflow processes the issue within a minute, comments the result, and closes 
 
 <!-- HOP:START -->
 
-_No links yet. Open an issue using one of the link templates to create one._
+| Short link | Target | Added | Source |
+| --- | --- | --- | --- |
+| [/termo](https://l.rajnandan.com/termo) | [termo.rajnandan.com](https://termo.rajnandan.com/) | 2026-06-14 | #3 |
 
 <!-- HOP:END -->
 
