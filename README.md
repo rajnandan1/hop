@@ -23,7 +23,7 @@ After generating your own repo from this template:
 
 That's all you need. Open a **New link** issue (see [Usage](#usage)) and your first short link is live within a minute.
 
-5. **(Optional) custom domain.** Add a `CNAME` file containing your domain (e.g. `links.example.com`), point its DNS at GitHub Pages, and set it under Settings → Pages. The base URL is auto-detected — nothing else to change. _DNS: a **subdomain** uses a `CNAME` record to `<you>.github.io`; an **apex** domain uses `A` records to GitHub's Pages IPs._
+5. **(Optional) custom domain.** Go to **Settings → Pages**, type your domain under **Custom domain** (e.g. `links.example.com`), and click **Save**. GitHub adds the `CNAME` file for you, shows the exact DNS records to set at your domain provider, and verifies them. hop redeploys on its own and starts using your domain — nothing to edit by hand.
 
 ## Usage
 
