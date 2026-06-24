@@ -31,6 +31,30 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # GITHUB_TOKEN can't enable Pages (that needs admin rights it never has, and
+      # GitHub retired the gh-pages auto-enable worker in 2024). So fail fast with
+      # a clear, actionable message instead of the action's cryptic "Not Found".
+      - name: Ensure Pages is enabled
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          if gh api "repos/$REPO/pages" --silent 2>/dev/null; then
+            echo "GitHub Pages is enabled — continuing."
+            exit 0
+          fi
+          {
+            echo "## ⚠️ GitHub Pages isn't turned on yet"
+            echo ""
+            echo "Enable it once (GitHub doesn't allow a workflow to do this for you):"
+            echo ""
+            echo "1. Open **Settings → Pages**."
+            echo "2. Under **Build and deployment**, set **Source** to **GitHub Actions**."
+            echo "3. Re-run this workflow: **Actions → Deploy site → Run workflow**."
+          } >> "$GITHUB_STEP_SUMMARY"
+          echo "::error title=GitHub Pages not enabled::Open Settings → Pages and set Source to 'GitHub Actions', then re-run this workflow. Full steps are in the job summary."
+          exit 1
+
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
@@ -39,8 +63,6 @@ jobs:
         run: node scripts/build-site.js
 
       - uses: actions/configure-pages@v5
-        with:
-          enablement: true
 
       - uses: actions/upload-pages-artifact@v3
         with:

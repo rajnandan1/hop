@@ -18,8 +18,8 @@ After generating your own repo from this template:
 
 1. **Enable Actions.** Open the **Actions** tab and click to enable workflows if prompted.
 2. **Create the labels.** Actions → **Setup labels** → **Run workflow**. (Also runs automatically on first import.)
-3. **Deploy.** Actions → **Deploy site** → **Run workflow**. This first run auto-enables Pages for the repo and publishes the site.
-4. **If your org blocks auto-enable:** Settings → **Pages** → set **Source = GitHub Actions**, then rerun **Deploy site**.
+3. **Turn on Pages (one-time).** Settings → **Pages** → under **Build and deployment**, set **Source = GitHub Actions**. GitHub doesn't allow a workflow to enable Pages for you, so this single click is required once. The deploy will fail with a reminder until you do it.
+4. **Deploy.** Actions → **Deploy site** → **Run workflow**. Your shortener goes live at `https://<you>.github.io/<repo>/`.
 
 That's all you need. Open a **New link** issue (see [Usage](#usage)) and your first short link is live within a minute.
 
